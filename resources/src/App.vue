@@ -12,12 +12,12 @@
           <button @click='newNote' class='bg-success btn btn-new-note'>
             + Note Baru
           </button>
-          <ListNotes :propNotes="notes" :propEditNote="editNote"/>
+          <ListNotes :propEditNote="editNote"/>
         </div>
     </div>
     <div class = 'kanan'>
       <!-- FORM -->
-           <FormNotes :propRemoveNote= "removeNote" :propSaveNote= "saveNote" :propUpdateNote= "updateNote" :propDataForm='dataForm' />
+           <FormNotes :propRemoveNote= "removeNote" :propSaveNote= "saveNote" :propUpdateNote= "updateNote" />
     </div>
   </div>
 </template>
@@ -29,14 +29,7 @@ import FormNotes from './components/formNotes.vue'
 export default {
   name: 'app',
   data: function(){
-            return{
-                dataForm: {},
-                notes : 
-                [
-                    { id:1, title: 'wegodev', description: 'Ini isinya' },
-                    { id:2, title: 'Halaman1', description: 'Ini isinya' }
-                ]
-            }
+            return{}
         },
   components: {
        ListNotes,
@@ -45,9 +38,6 @@ export default {
   methods:{
        newNote(){
             this.dataForm = {id:0, title:'', description:''}
-       },
-       editNote(id){
-          this.dataForm = this.notes.find(note => note.id === id);
        },
        saveNote(title, description)
           {
