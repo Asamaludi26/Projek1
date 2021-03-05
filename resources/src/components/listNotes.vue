@@ -24,9 +24,6 @@
             }
         },
         props: {
-            propNotes : {
-                type: Array
-            },
             propEditNote : {
                 type: Function
             }
@@ -35,6 +32,15 @@
             editNote(id){
                 let dataForm = this.notes.find(note => note.id === id);
                 this.$root.$emit('emitForm', dataForm);
+            },
+            createNewId(){
+                let newId = 0;
+                if(this.notes.length === 0){
+                        newId= 1 ;
+                }else{
+                        newId= this.notes[this.notes.length - 1].id + 1;
+                }
+                return newId;
             }
         },
         mounted(){
@@ -47,6 +53,12 @@
 
                 this.notes[noteIndex].title = data.title;
                 this.notes[noteIndex].description = data.description;
+            } );
+            this.$root.$on('emitSaveNote', data => {
+                let newId = this.createNewId();
+                let newNote = {id:newId, 'title' : data.title, 'description' : data.description }
+                this.notes.push(newNote);
+                this.editNote(newId);
             } );
         }
             
