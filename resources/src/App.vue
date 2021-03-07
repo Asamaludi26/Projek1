@@ -12,12 +12,12 @@
           <button @click='newNote' class='bg-success btn btn-new-note'>
             + Note Baru
           </button>
-          <ListNotes/>
+          <ListNotes />
         </div>
     </div>
     <div class = 'kanan'>
       <!-- FORM -->
-           <FormNotes/>
+           <FormNotes />
     </div>
   </div>
 </template>
@@ -35,17 +35,14 @@ export default {
        ListNotes,
        FormNotes
   },
-  methods:{
-       newNote(){
-            let dataForm = {id:0, title:'', description:''}
+  methods:{ newNote(){
+            let dataForm = {id:0, title:'', description:'', mode: 'save'}
             this.$root.$emit('emitForm', dataForm);
        }
-  }
+     }
 }
 </script>
-
 <style>
-
 body{
      margin:0px;
      overflow:hidden;
